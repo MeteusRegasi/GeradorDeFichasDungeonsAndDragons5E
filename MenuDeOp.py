@@ -2,17 +2,30 @@ from ComandosUteis import *
 
 
 def chamarMenu():
-    listaDePossiveisEscolhas = [1, 2, 3]
-    Titulo
+    listaDePossiveisEscolhas = [0, 1, 2, 3, 4, 5, 6]
+    
+    titulo('Menu de Opções')
+    print("""Selecione a sua opção:
+    0) Sair
+    1) Gerar ficha aleatória
+    2) Gerar ficha semi-aleatória
+    3) Mostrar fichas
+    4) Adicionar raça
+    5) Adicionar classe
+    6) Adicionar item""")
     while True:
-        escolha = input("""
-        Selecione a sua opção:
-        1) Gerar ficha aleatória
-        2) Gerar ficha semi-aleatória
-        3) Mostrar fichas
-        -> """)
-        if escolha.isnumeric() == False or escolha not in listaDePossiveisEscolhas:
+        escolha = -1
+        try:
+            escolha = int(input('-> '))
+        except:
+            escolha = -1
+        finally:
+            mostrarLinha()
+        if escolha < 0 or escolha > listaDePossiveisEscolhas[-1]:
+            escolha = -1
+        if escolha == -1:
             print('Opção inválida! Selecione novamente!')
         else:
-            break
+            break 
+        
     return escolha

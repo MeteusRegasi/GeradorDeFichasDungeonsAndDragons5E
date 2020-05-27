@@ -2,5 +2,6 @@ from MenuDeOp import *
 
 #Menu:
 while True:
-    opMenu = ''
     opMenu = chamarMenu()
+    if opMenu == 0:
+        break
