@@ -4,6 +4,7 @@ from ValoresPadroes import *
 
 #Pega o valor das variáveis de abreviações de atributos e coloca na variável
 atributosAbreviaçãoPadrao = variaveis()[1]
+idiomasPossiveis = variaveis()[2]
 
 
 
@@ -11,7 +12,7 @@ def criarRaca():
     #Dicionário onde ficarão as características da classe.
     caracteristicasDeRaca = {}
 
-    #Define o nome da raça
+    #-----------------Nome-----------------
     while True:
         caracteristicasDeRaca["nome"] = input('Digite o nome da raça: ').strip().title()
         if caracteristicasDeRaca["nome"].isalpha() == False:
@@ -20,12 +21,11 @@ def criarRaca():
             break
     mostrarLinha()
 
-    #Define os ajustes de atributo da classe
+    #-----------------Ajustes de atributo-----------------
     print("""Ajuste de atributo: digite o valor que você quer adicionar em seguida a abreviação do atributo(3 primeiras letras).
 Ex: 2 des 1 for""")
     mostrarLinha()
     atributosDeRaca = {}
-
     #Checa os valores e atributos
     while True:
         validoOuInvalido = 0
@@ -44,19 +44,16 @@ Ex: 2 des 1 for""")
                     for itens1 in atributosAbreviaçãoPadrao:
                         validoOuInvalido += 1
                         if itens1 == ajustesAtributos[c2]:
-                            validoOuInvalido -= 6
+                            validoOuInvalido -= len(atributosAbreviaçãoPadrao)
                     if validoOuInvalido != 0:
                         break
         else:
             validoOuInvalido = -1
-        
-
         #Se o número do válido ou inválido for diferente de 0 vai repetir
         if validoOuInvalido == 0:
             break
         else:
             valorInvalido()
-
     #Adiciona o valor em cada determinado atributo
     for atributo in atributosAbreviaçãoPadrao:
         atributosDeRaca[atributo] = 0
@@ -66,9 +63,9 @@ Ex: 2 des 1 for""")
     caracteristicasDeRaca['ajustes de atributo'] = atributosDeRaca
     mostrarLinha()
 
-    #Define a tendência normal da raça
+    #-----------------Tendências-----------------
     #Texto mostrando as tendências possíveis
-    print("""Selecione a tendência: leal e bom, leal e neutro, leal e mau, neutro e bom, neutro e neuro, neutro e caótico, caótico e bom, caótico e neutro ou caótico e mau.""")
+    print("""Selecione a tendência: leal e bom, leal e neutro, leal e mau, neutro e bom, neutro e neutro, neutro e caótico, caótico e bom, caótico e neutro ou caótico e mau.""")
     #Checa se a tendência digitada está correta, se não, repete
     while True:
         validoOuInvalido = 0
@@ -76,12 +73,36 @@ Ex: 2 des 1 for""")
         for tendencia in variaveis()[3]:
             validoOuInvalido += 1
             if tendencia == minhaTendencia:
-                validoOuInvalido -= 9
+                validoOuInvalido -= len(variaveis()[3])
         if validoOuInvalido != 0:
             valorInvalido()
         else:
             break
+    #Define a tendência normal da raça
     caracteristicasDeRaca['tendência'] = minhaTendencia
+    mostrarLinha()
+
+    #-----------------Idioma-----------------
+    print('Digite o idioma da sua classe. Possibilidades: todos os idiomas e um a escolha')
+    meusIdiomas = []
+    while True:
+        validoOuInvalido = 0
+        escolhaIdioma = input('-> ').strip().lower()
+        for idioma in idiomasPossiveis:
+            validoOuInvalido += 1
+            if idioma == escolhaIdioma:
+                validoOuInvalido -= len(idiomasPossiveis)
+        if validoOuInvalido != 0:
+            valorInvalido()
+        else:
+            meusIdiomas.append(escolhaIdioma)
+            while True:
+                escolhaMaisIdiomas = input('Deseja adicionar mais um idioma?[s/n]').lower().strip()[0]
+                if escolhaMaisIdiomas == 's' or escolhaMaisIdiomas == 'n':
+                    break
+            if escolhaMaisIdiomas == 'n':
+                break
+    caracteristicasDeRaca['idiomas'] = meusIdiomas
 
     return caracteristicasDeRaca
 
