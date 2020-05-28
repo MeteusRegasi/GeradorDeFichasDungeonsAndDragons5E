@@ -1,0 +1,2 @@
+def gerarRaça():
+def gerarClasse():
