@@ -6,13 +6,22 @@ def titulo(msg, tamanho=60):
     mostrarLinha(tamanho)
 def valorInvalido():
     print('Valor inválido! Tente novamente!')
-def checar(itemComparado, itemComparador):
+def checar(itemComparado, itemComparador, semMensagem=False):
     valorValidoOuInvalido = 0
     for c in itemComparador:
         valorValidoOuInvalido += 1
         if c == itemComparado:
             valorValidoOuInvalido -= len(itemComparador)
-    if valorValidoOuInvalido != 0:
+    if valorValidoOuInvalido != 0 and semMensagem == False:
         valorInvalido()
     return valorValidoOuInvalido
-        
+def setinha():
+    return input('-> ').strip().lower()
+def querContinuar(msg):
+    while True:
+        escolha = input(f'{msg}[s/n] ').lower()[0]
+        if escolha == 's' or escolha == 'n':
+            break
+        else:
+            valorInvalido()
+    return escolha

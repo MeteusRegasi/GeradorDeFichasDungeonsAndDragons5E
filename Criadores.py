@@ -29,7 +29,7 @@ Ex: 2 des 1 for""")
     #Checa os valores e atributos
     while True:
         validoOuInvalido = 0
-        ajustesAtributos = input('-> ').lower().strip().split()
+        ajustesAtributos = setinha().split()
         #Checa se tem mais de uma palavras
         if len(ajustesAtributos) >= 2:
             #Checa os números
@@ -68,15 +68,9 @@ Ex: 2 des 1 for""")
     print("""Selecione a tendência: leal e bom, leal e neutro, leal e mau, neutro e bom, neutro e neutro, neutro e caótico, caótico e bom, caótico e neutro ou caótico e mau.""")
     #Checa se a tendência digitada está correta, se não, repete
     while True:
-        validoOuInvalido = 0
-        minhaTendencia = input('-> ').lower().strip()
-        for tendencia in variaveis()[3]:
-            validoOuInvalido += 1
-            if tendencia == minhaTendencia:
-                validoOuInvalido -= len(variaveis()[3])
-        if validoOuInvalido != 0:
-            valorInvalido()
-        else:
+        minhaTendencia = setinha()
+        validoOuInvalido = checar(minhaTendencia, variaveis()[3])
+        if validoOuInvalido == 0:
             break
     #Define a tendência normal da raça
     caracteristicasDeRaca['tendência'] = minhaTendencia
@@ -86,23 +80,42 @@ Ex: 2 des 1 for""")
     print('Digite o idioma da sua classe. Possibilidades: todos os idiomas e um a escolha')
     meusIdiomas = []
     while True:
-        validoOuInvalido = 0
-        escolhaIdioma = input('-> ').strip().lower()
-        for idioma in idiomasPossiveis:
-            validoOuInvalido += 1
-            if idioma == escolhaIdioma:
-                validoOuInvalido -= len(idiomasPossiveis)
-        if validoOuInvalido != 0:
-            valorInvalido()
-        else:
-            meusIdiomas.append(escolhaIdioma)
-            while True:
-                escolhaMaisIdiomas = input('Deseja adicionar mais um idioma?[s/n]').lower().strip()[0]
-                if escolhaMaisIdiomas == 's' or escolhaMaisIdiomas == 'n':
+        escolhaIdioma = setinha()
+        validoOuInvalido = checar(escolhaIdioma, idiomasPossiveis)
+        if validoOuInvalido == 0:
+            validoOuInvalido = checar(escolhaIdioma, meusIdiomas, semMensagem=True)
+            if validoOuInvalido == 0 and meusIdiomas != []:
+                print('Idioma já registrado!')
+            else:
+                meusIdiomas.append(escolhaIdioma)
+                escolhaMaisIdiomas = querContinuar('Deseja adicionar mais um idioma?')
+                if escolhaMaisIdiomas == 'n':
                     break
-            if escolhaMaisIdiomas == 'n':
-                break
     caracteristicasDeRaca['idiomas'] = meusIdiomas
+
+    #-----------------Idade-----------------
+    print('Indique a idade a qual fica adulto e até onde vivem. Ex: 18 100')
+    while True:
+        validoOuInvalido = 0
+        idadeDaRaca = setinha().split()
+        for c4 in idadeDaRaca:
+            try:
+                int(c4)
+            except:
+                validoOuInvalido -= 1
+        if validoOuInvalido == 0:
+            if len(idadeDaRaca) != 2:
+                valorInvalido()
+            else:
+                break
+        else:
+            valorInvalido()
+    idadeDaRaca = f'Adulto aos {idadeDaRaca[0]}. Vivem até {idadeDaRaca[1]}.'
+    caracteristicasDeRaca['idade'] = idadeDaRaca
+
+    #-----------------Altura meédia-----------------
+    print('Informe a altura média')
+    while True:
 
     return caracteristicasDeRaca
 
