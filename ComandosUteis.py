@@ -25,3 +25,15 @@ def querContinuar(msg):
         else:
             valorInvalido()
     return escolha
+def eDecimal(medida):
+    while True:
+        validoOuInvalido = 0
+        try:
+            decimal = float(setinha())
+        except:
+            validoOuInvalido = 1
+        if validoOuInvalido == 0:
+            return f'{decimal:.2f}{medida}'
+            break
+        else:
+            valorInvalido()

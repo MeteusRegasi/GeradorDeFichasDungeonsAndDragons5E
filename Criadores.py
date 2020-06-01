@@ -21,6 +21,63 @@ def criarRaca():
             break
     mostrarLinha()
 
+    #-----------------Deslocamento-----------------
+    print('Informe o deslocamento em metros.')   
+    caracteristicasDeRaca['deslocamento'] = eDecimal(' metros')
+    mostrarLinha()
+
+    #-----------------Peso-----------------
+    print('Informe o peso média da raça em Kg.')
+    caracteristicasDeRaca['peso'] = eDecimal('kg')
+    mostrarLinha()
+
+    #-----------------Idade-----------------
+    print('Indique a idade a qual fica adulto e até onde vivem. Ex: 18 100')
+    while True:
+        validoOuInvalido = 0
+        idadeDaRaca = setinha().split()
+        for c4 in idadeDaRaca:
+            try:
+                int(c4)
+            except:
+                validoOuInvalido -= 1
+        if validoOuInvalido == 0:
+            if len(idadeDaRaca) != 2:
+                valorInvalido()
+            else:
+                break
+        else:
+            valorInvalido()
+    idadeDaRaca = f'Adulto aos {idadeDaRaca[0]}. Vivem até {idadeDaRaca[1]}.'
+    caracteristicasDeRaca['idade'] = idadeDaRaca
+    mostrarLinha()
+
+    #-----------------Altura média-----------------
+    print('Informe a altura média em metros.')
+    while True:
+        validoOuInvalido = 0
+        minhaAltura = setinha().split()
+        minhaAlturaRevisada = []
+        for c5 in range(0, len(minhaAltura)):
+            try:
+                minhaAlturaRevisada.append(float(minhaAltura[c5]))
+            except:
+                validoOuInvalido = 1
+                break
+            if c5 == 2:
+                validoOuInvalido = 1    
+                break
+        if validoOuInvalido == 0:
+            if len(minhaAlturaRevisada) == 1:
+                minhaAlturaRevisada = f'Mede cerca de {minhaAlturaRevisada[0]:.2f} metros.'
+            else:
+                minhaAlturaRevisada = f'Mede entre {minhaAlturaRevisada[0]} e {minhaAlturaRevisada[1]} metros.'
+            caracteristicasDeRaca['altura'] = (minhaAlturaRevisada)
+            break            
+        else:
+            valorInvalido()
+    mostrarLinha()
+
     #-----------------Ajustes de atributo-----------------
     print('Ajuste de atributo: digite o valor que você quer adicionar em seguida a abreviação do atributo(3 primeiras letras).\nEx: 2 des 1 for')
     mostrarLinha()
@@ -91,56 +148,7 @@ def criarRaca():
                 if escolhaMaisIdiomas == 'n':
                     break
     caracteristicasDeRaca['idiomas'] = meusIdiomas
-    mostrarLinha()
-
-    #-----------------Idade-----------------
-    print('Indique a idade a qual fica adulto e até onde vivem. Ex: 18 100')
-    while True:
-        validoOuInvalido = 0
-        idadeDaRaca = setinha().split()
-        for c4 in idadeDaRaca:
-            try:
-                int(c4)
-            except:
-                validoOuInvalido -= 1
-        if validoOuInvalido == 0:
-            if len(idadeDaRaca) != 2:
-                valorInvalido()
-            else:
-                break
-        else:
-            valorInvalido()
-    idadeDaRaca = f'Adulto aos {idadeDaRaca[0]}. Vivem até {idadeDaRaca[1]}.'
-    caracteristicasDeRaca['idade'] = idadeDaRaca
-    mostrarLinha()
-
-    #-----------------Altura média-----------------
-    print('Informe a altura média em metros.')
-    while True:
-        validoOuInvalido = 0
-        minhaAltura = setinha().split()
-        minhaAlturaRevisada = []
-        for c5 in range(0, len(minhaAltura)):
-            try:
-                minhaAlturaRevisada.append(float(minhaAltura[c5]))
-            except:
-                validoOuInvalido = 1
-                break
-            if c5 == 2:
-                validoOuInvalido = 1    
-                break
-        if validoOuInvalido == 0:
-            if len(minhaAlturaRevisada) == 1:
-                minhaAlturaRevisada = f'Mede cerca de {minhaAlturaRevisada[0]} metros.'
-            else:
-                minhaAlturaRevisada = f'Mede entre {minhaAlturaRevisada[0]} e {minhaAlturaRevisada[1]} metros.'
-            caracteristicasDeRaca['altura'] = (minhaAlturaRevisada)
-            break            
-        else:
-            valorInvalido()
     mostrarLinha()"""
-
-                
 
     return caracteristicasDeRaca
 
