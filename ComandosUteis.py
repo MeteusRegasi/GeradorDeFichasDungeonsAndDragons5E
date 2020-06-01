@@ -7,6 +7,9 @@ def titulo(msg, tamanho=60):
 def valorInvalido():
     print('Valor inválido! Tente novamente!')
 def checar(itemComparado, itemComparador, semMensagem=False):
+    """
+    -> pega um valor e compara a uma lista, se o valor estiver retorna 0, se não estiver retorna 1
+    """
     valorValidoOuInvalido = 0
     for c in itemComparador:
         valorValidoOuInvalido += 1
@@ -18,6 +21,9 @@ def checar(itemComparado, itemComparador, semMensagem=False):
 def setinha():
     return input('-> ').strip().lower()
 def querContinuar(msg):
+    """
+    -> Pergunta se o usuário quer continuar, se ele quiser retorna 's', se ele não quiser retorna 'n'
+    """
     while True:
         escolha = input(f'{msg}[s/n] ').lower()[0]
         if escolha == 's' or escolha == 'n':
@@ -26,6 +32,9 @@ def querContinuar(msg):
             valorInvalido()
     return escolha
 def eDecimal(medida):
+    """
+    -> retorna o valor que o usuário escolheu em decimal junto com a unidade de medida escolida
+    """
     while True:
         validoOuInvalido = 0
         try:

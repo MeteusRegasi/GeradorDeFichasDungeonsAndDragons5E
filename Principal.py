@@ -31,7 +31,7 @@ while True:
     elif opMenu == 5:
     5) Adicionar classe
 
-    #Adiciona item aos existentes
+    #Adiciona equipamentos aos existentes
     elif opMenu == 6:
-    6) Adicionar item
+    6) Adicionar equipamento
     """

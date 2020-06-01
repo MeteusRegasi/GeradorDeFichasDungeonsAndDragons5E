@@ -13,7 +13,7 @@ def chamarMenu():
     3) Mostrar fichas
     4) Adicionar raça
     5) Adicionar classe
-    6) Adicionar item""")
+    6) Adicionar equipamento""")
     #Você seleciona a opção, se for inválida pede pra selecionar uma válida
     while True:
         escolha = -1

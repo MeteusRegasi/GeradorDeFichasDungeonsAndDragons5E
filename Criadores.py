@@ -2,9 +2,11 @@ from ComandosUteis import *
 from ValoresPadroes import *
 
 
-#Pega o valor das variáveis de abreviações de atributos e coloca na variável
+#Pega o valor das variáveis pré definidas
 atributosAbreviaçãoPadrao = variaveis()[1]
 idiomasPossiveis = variaveis()[2]
+tiposDeEquipamentos = variaveis()[7]
+propriedadeDasArmas = variaveis()[8]
 
 
 
@@ -148,8 +150,79 @@ def criarRaca():
                 if escolhaMaisIdiomas == 'n':
                     break
     caracteristicasDeRaca['idiomas'] = meusIdiomas
-    mostrarLinha()"""
+    mostrarLinha()
+
+    #-----------------Habilidades-----------------
+    minhasHabilidades = []
+    while True:
+        validoOuInvalido = 0
+        validoOuInvalido = querContinuar('Deseja adicionar uma habilidade?')
+        if validoOuInvalido == 's':
+            adicionarHabilidade = {}
+            nomeDaHabilidade = input('-Nome: ')
+            adicionarHabilidade[nomeDaHabilidade] = input('-Características: ')
+            minhasHabilidades.append(adicionarHabilidade)
+            mostrarLinha()
+        else:
+            mostrarLinha()
+            break
+    if minhasHabilidades != []:
+        caracteristicasDeRaca['habilidades'] = minhasHabilidades"""
+    
+    #-----------------Proeficiência----------------
+
+    
+    #-----------------Magia-----------------
+    
+    #-----------------Subraça-----------------
+    
+    #-----------------Salvando a raça-----------------
 
     return caracteristicasDeRaca
+def criarEquipamento():
+    caracteristicasDoEquipamento = {}
 
-print(criarRaca())
+    #Define o tipo de equipamento
+    print('Digite o tipo de equipamento(arma, armadura ou item): ')
+    while True:
+        tipoDoEquipamento = setinha()
+        valorValidoOuInvalido = checar(tipoDoEquipamento, tiposDeEquipamentos, semMensagem=True)
+        if valorValidoOuInvalido != 0:
+            valorInvalido()
+        else:
+            caracteristicasDoEquipamento['tipo do equipamento'] = tipoDoEquipamento
+            break
+    mostrarLinha()
+
+    #Criação de armas
+    if tipoDoEquipamento == 'arma':
+        print('Qual o nome da arma?')
+        caracteristicasDoEquipamento['nome do equipamento'] = setinha()
+        while True:
+            propriedadeDaArma = setinha()
+            valorValidoOuInvalido = checar(propriedadeDasArmas)
+            if valorValidoOuInvalido != 0:
+                valorInvalido()
+            else:
+            # <-------------------------------- parei aqui
+        mostrarLinha()
+
+    #Criação de armaduras
+    elif tipoDoEquipamento == 'armadura':
+        print('Qual o nome da armadura?')
+        caracteristicasDoEquipamento['nome do equipamento'] = setinha()
+
+    #Criação de itens
+    else: 
+        print('Qual o nome do item?')
+        caracteristicasDoEquipamento['nome do equipamento'] = setinha()
+    return caracteristicasDoEquipamento
+    
+
+
+
+
+
+
+
+print(criarEquipamento())
