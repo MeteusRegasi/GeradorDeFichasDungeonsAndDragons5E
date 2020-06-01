@@ -12,7 +12,7 @@ def criarRaca():
     #Dicionário onde ficarão as características da classe.
     caracteristicasDeRaca = {}
 
-    #-----------------Nome-----------------
+    """#-----------------Nome-----------------
     while True:
         caracteristicasDeRaca["nome"] = input('Digite o nome da raça: ').strip().title()
         if caracteristicasDeRaca["nome"].isalpha() == False:
@@ -22,8 +22,7 @@ def criarRaca():
     mostrarLinha()
 
     #-----------------Ajustes de atributo-----------------
-    print("""Ajuste de atributo: digite o valor que você quer adicionar em seguida a abreviação do atributo(3 primeiras letras).
-Ex: 2 des 1 for""")
+    print('Ajuste de atributo: digite o valor que você quer adicionar em seguida a abreviação do atributo(3 primeiras letras).\nEx: 2 des 1 for')
     mostrarLinha()
     atributosDeRaca = {}
     #Checa os valores e atributos
@@ -65,7 +64,7 @@ Ex: 2 des 1 for""")
 
     #-----------------Tendências-----------------
     #Texto mostrando as tendências possíveis
-    print("""Selecione a tendência: leal e bom, leal e neutro, leal e mau, neutro e bom, neutro e neutro, neutro e caótico, caótico e bom, caótico e neutro ou caótico e mau.""")
+    print('Selecione a tendência: leal e bom, leal e neutro, leal e mau, neutro e bom, neutro e neutro, neutro e caótico, caótico e bom, caótico e neutro ou caótico e mau.')
     #Checa se a tendência digitada está correta, se não, repete
     while True:
         minhaTendencia = setinha()
@@ -92,6 +91,7 @@ Ex: 2 des 1 for""")
                 if escolhaMaisIdiomas == 'n':
                     break
     caracteristicasDeRaca['idiomas'] = meusIdiomas
+    mostrarLinha()
 
     #-----------------Idade-----------------
     print('Indique a idade a qual fica adulto e até onde vivem. Ex: 18 100')
@@ -112,10 +112,35 @@ Ex: 2 des 1 for""")
             valorInvalido()
     idadeDaRaca = f'Adulto aos {idadeDaRaca[0]}. Vivem até {idadeDaRaca[1]}.'
     caracteristicasDeRaca['idade'] = idadeDaRaca
+    mostrarLinha()
 
-    #-----------------Altura meédia-----------------
-    print('Informe a altura média')
+    #-----------------Altura média-----------------
+    print('Informe a altura média em metros.')
     while True:
+        validoOuInvalido = 0
+        minhaAltura = setinha().split()
+        minhaAlturaRevisada = []
+        for c5 in range(0, len(minhaAltura)):
+            try:
+                minhaAlturaRevisada.append(float(minhaAltura[c5]))
+            except:
+                validoOuInvalido = 1
+                break
+            if c5 == 2:
+                validoOuInvalido = 1    
+                break
+        if validoOuInvalido == 0:
+            if len(minhaAlturaRevisada) == 1:
+                minhaAlturaRevisada = f'Mede cerca de {minhaAlturaRevisada[0]} metros.'
+            else:
+                minhaAlturaRevisada = f'Mede entre {minhaAlturaRevisada[0]} e {minhaAlturaRevisada[1]} metros.'
+            caracteristicasDeRaca['altura'] = (minhaAlturaRevisada)
+            break            
+        else:
+            valorInvalido()
+    mostrarLinha()"""
+
+                
 
     return caracteristicasDeRaca
 
